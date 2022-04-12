@@ -17,7 +17,7 @@ package rpc
 import (
 	"context"
 
-	"github.com/gagliardetto/solana-go"
+	"github.com/bloXroute-Labs/solana-go"
 )
 
 type GetInflationRewardOpts struct {
@@ -32,7 +32,7 @@ type GetInflationRewardOpts struct {
 func (cl *Client) GetInflationReward(
 	ctx context.Context,
 
-	// An array of addresses to query.
+// An array of addresses to query.
 	addresses []solana.PublicKey,
 
 	opts *GetInflationRewardOpts,

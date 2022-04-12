@@ -18,8 +18,8 @@ import (
 	"errors"
 
 	ag_binary "github.com/gagliardetto/binary"
-	ag_solanago "github.com/gagliardetto/solana-go"
-	ag_format "github.com/gagliardetto/solana-go/text/format"
+	ag_solanago "github.com/bloXroute-Labs/solana-go"
+	ag_format "github.com/bloXroute-Labs/solana-go/text/format"
 	ag_treeout "github.com/gagliardetto/treeout"
 )
 
@@ -178,7 +178,7 @@ func (obj *InitializeAccount) UnmarshalWithDecoder(decoder *ag_binary.Decoder) (
 
 // NewInitializeAccountInstruction declares a new InitializeAccount instruction with the provided parameters and accounts.
 func NewInitializeAccountInstruction(
-	// Accounts:
+// Accounts:
 	account ag_solanago.PublicKey,
 	mint ag_solanago.PublicKey,
 	owner ag_solanago.PublicKey,

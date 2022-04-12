@@ -23,8 +23,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/gagliardetto/solana-go"
-	"github.com/gagliardetto/solana-go/text"
+	"github.com/bloXroute-Labs/solana-go"
+	"github.com/bloXroute-Labs/solana-go/text"
 	"github.com/stretchr/testify/require"
 	"go.uber.org/zap"
 )

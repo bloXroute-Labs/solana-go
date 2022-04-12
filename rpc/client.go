@@ -24,7 +24,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/gagliardetto/solana-go/rpc/jsonrpc"
+	"github.com/bloXroute-Labs/solana-go/rpc/jsonrpc"
 	"github.com/klauspost/compress/gzhttp"
 	"go.uber.org/ratelimit"
 )
