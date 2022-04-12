@@ -20,7 +20,7 @@ import (
 	"context"
 	"encoding/base64"
 
-	"github.com/gagliardetto/solana-go"
+	"github.com/bloXroute-Labs/solana-go"
 )
 
 // SendRawTransaction submits a signed transaction to the cluster for processing.
@@ -41,7 +41,7 @@ func (cl *Client) SendRawTransaction(
 func (cl *Client) SendRawTransactionWithOpts(
 	ctx context.Context,
 	rawTx []byte,
-	skipPreflight bool, // if true, skip the preflight transaction checks (default: false)
+	skipPreflight bool,                 // if true, skip the preflight transaction checks (default: false)
 	preflightCommitment CommitmentType, // optional; Commitment level to use for preflight (default: "finalized").
 ) (signature solana.Signature, err error) {
 	return cl.SendEncodedTransactionWithOpts(

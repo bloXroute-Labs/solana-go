@@ -19,8 +19,8 @@ import (
 	"fmt"
 
 	ag_binary "github.com/gagliardetto/binary"
-	ag_solanago "github.com/gagliardetto/solana-go"
-	ag_format "github.com/gagliardetto/solana-go/text/format"
+	ag_solanago "github.com/bloXroute-Labs/solana-go"
+	ag_format "github.com/bloXroute-Labs/solana-go/text/format"
 	ag_treeout "github.com/gagliardetto/treeout"
 )
 
@@ -262,10 +262,10 @@ func (obj *ApproveChecked) UnmarshalWithDecoder(decoder *ag_binary.Decoder) (err
 
 // NewApproveCheckedInstruction declares a new ApproveChecked instruction with the provided parameters and accounts.
 func NewApproveCheckedInstruction(
-	// Parameters:
+// Parameters:
 	amount uint64,
 	decimals uint8,
-	// Accounts:
+// Accounts:
 	source ag_solanago.PublicKey,
 	mint ag_solanago.PublicKey,
 	delegate ag_solanago.PublicKey,
