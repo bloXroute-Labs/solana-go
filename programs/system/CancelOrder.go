@@ -29,8 +29,8 @@ import (
 
 // CancelOrder (V2)
 type CancelOrder struct {
-	Side    serum.Side
-	OrderId bin.Uint128
+	Side    *serum.Side
+	OrderId *bin.Uint128
 
 	// 0. `[writable]` market
 	// 1. `[writable]` bids
@@ -49,43 +49,43 @@ func NewCancelOrderInstructionBuilder() *CancelOrder {
 	return nd
 }
 
-func (c *CancelOrder) SetSide(s Side) *CancelOrder {
-	c.Side = s
+func (c *CancelOrder) SetSide(s serum.Side) *CancelOrder {
+	c.Side = &s
 	return c
 }
 
 func (c *CancelOrder) SetOrderId(o bin.Uint128) *CancelOrder {
-	c.OrderId = o
+	c.OrderId = &o
 	return c
 }
 
 func (c *CancelOrder) SetMarketAccount(a ag_solanago.PublicKey) *CancelOrder {
-	c.AccountMetaSlice[0] = &a
+	c.AccountMetaSlice[0] = a
 	return c
 }
 
 func (c *CancelOrder) SetBidsAccount(a ag_solanago.PublicKey) *CancelOrder {
-	c.AccountMetaSlice[1] = &a
+	c.AccountMetaSlice[1] = a
 	return c
 }
 
 func (c *CancelOrder) SetAsksAccount(a ag_solanago.PublicKey) *CancelOrder {
-	c.AccountMetaSlice[2] = &a
+	c.AccountMetaSlice[2] = a
 	return c
 }
 
 func (c *CancelOrder) SetOpenOrdersAccount(a ag_solanago.PublicKey) *CancelOrder {
-	c.AccountMetaSlice[3] = &a
+	c.AccountMetaSlice[3] = a
 	return c
 }
 
 func (c *CancelOrder) SetOwnerAccount(a ag_solanago.PublicKey) *CancelOrder {
-	c.AccountMetaSlice[4] = &a
+	c.AccountMetaSlice[4] = a
 	return c
 }
 
 func (c *CancelOrder) SetEventQueue(a ag_solanago.PublicKey) *CancelOrder {
-	c.AccountMetaSlice[5] = &a
+	c.AccountMetaSlice[5] = a
 	return c
 }
 
@@ -131,10 +131,10 @@ func (c CancelOrder) ValidateAndBuild() (*Instruction, error) {
 }
 
 func (c *CancelOrder) Validate() error {
-	if c.Side == 0 {
+	if c.Side == nil {
 		return errors.New("CancelOrder.Side parameter is not set")
 	}
-	if c.OrderId.String() == "0" {
+	if c.OrderId == nil {
 		return errors.New("CancelOrder.OrderId parameter is not set")
 	}
 
