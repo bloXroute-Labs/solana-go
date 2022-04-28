@@ -60,7 +60,6 @@ var InstructionDefVariant = bin.NewVariantDefinition(bin.Uint32TypeIDEncoding, [
 	{Name: "new_order", Type: (*InstructionNewOrder)(nil)},
 	{Name: "match_orders", Type: (*InstructionMatchOrder)(nil)},
 	{Name: "consume_events", Type: (*InstructionConsumeEvents)(nil)},
-	{Name: "cancel_order", Type: (*InstructionCancelOrder)(nil)},
 	{Name: "settle_funds", Type: (*InstructionSettleFunds)(nil)},
 	{Name: "cancel_order_by_client_id", Type: (*InstructionCancelOrderByClientId)(nil)},
 	{Name: "disable_market", Type: (*InstructionDisableMarketAccounts)(nil)},
@@ -69,7 +68,6 @@ var InstructionDefVariant = bin.NewVariantDefinition(bin.Uint32TypeIDEncoding, [
 
 	// Added in DEX V3
 	{Name: "new_order_v3", Type: (*InstructionNewOrderV3)(nil)},
-	{Name: "cancel_order_v2", Type: (*InstructionCancelOrderV2)(nil)},
 	{Name: "cancel_order_by_client_id_v2", Type: (*InstructionCancelOrderByClientIdV2)(nil)},
 	{Name: "send_take", Type: (*InstructionSendTake)(nil)},
 })
@@ -266,20 +264,6 @@ type InstructionCancelOrder struct {
 	OpenOrderSlot uint8
 
 	Accounts *CancelOrderAccounts `bin:"-"`
-}
-
-func (i *InstructionCancelOrder) SetAccounts(accounts []*solana.AccountMeta) error {
-	if len(accounts) < 4 {
-		return fmt.Errorf("insufficient account, Cancel Order requires at-least 4 accounts not %d\n", len(accounts))
-	}
-	i.Accounts = &CancelOrderAccounts{
-		Market:       accounts[0],
-		OpenOrders:   accounts[1],
-		RequestQueue: accounts[2],
-		Owner:        accounts[3],
-	}
-
-	return nil
 }
 
 type SettleFundsAccounts struct {
@@ -512,38 +496,6 @@ func (i *InstructionNewOrderV3) SetAccounts(accounts []*solana.AccountMeta) erro
 		SPLTokenProgram: accounts[10],
 		RentSysvar:      accounts[11],
 		FeeDiscount:     accounts[12],
-	}
-
-	return nil
-}
-
-type CancelOrderV2Accounts struct {
-	Market     *solana.AccountMeta `text:"linear,notype"` // 0. `[writable]` market
-	Bids       *solana.AccountMeta `text:"linear,notype"` // 1. `[writable]` bids
-	Asks       *solana.AccountMeta `text:"linear,notype"` // 2. `[writable]` asks
-	OpenOrders *solana.AccountMeta `text:"linear,notype"` // 3. `[writable]` OpenOrders
-	Owner      *solana.AccountMeta `text:"linear,notype"` // 4. `[signer]` the OpenOrders owner
-	EventQueue *solana.AccountMeta `text:"linear,notype"` // 5. `[writable]` event_q
-}
-
-type InstructionCancelOrderV2 struct {
-	Side    Side
-	OrderID bin.Uint128
-
-	Accounts *CancelOrderV2Accounts `bin:"-"`
-}
-
-func (i *InstructionCancelOrderV2) SetAccounts(accounts []*solana.AccountMeta) error {
-	if len(accounts) < 6 {
-		return fmt.Errorf("insufficient account, Cancel Order V2 requires at-least 6 accounts not %d", len(accounts))
-	}
-	i.Accounts = &CancelOrderV2Accounts{
-		Market:     accounts[0],
-		Bids:       accounts[1],
-		Asks:       accounts[2],
-		OpenOrders: accounts[3],
-		Owner:      accounts[4],
-		EventQueue: accounts[5],
 	}
 
 	return nil

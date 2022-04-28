@@ -78,6 +78,9 @@ const (
 
 	// Transfer lamports from a derived address
 	Instruction_TransferWithSeed
+
+	// Cancel an order
+	Instruction_CancelOrder
 )
 
 // InstructionIDToName returns the name of the instruction given its ID.
@@ -107,6 +110,8 @@ func InstructionIDToName(id uint32) string {
 		return "AssignWithSeed"
 	case Instruction_TransferWithSeed:
 		return "TransferWithSeed"
+	case Instruction_CancelOrder:
+		return "CancelOrder"
 	default:
 		return ""
 	}
@@ -162,6 +167,9 @@ var InstructionImplDef = ag_binary.NewVariantDefinition(
 		},
 		{
 			"TransferWithSeed", (*TransferWithSeed)(nil),
+		},
+		{
+			"CancelAccount", (*CancelAccount)(nil),
 		},
 	},
 )
