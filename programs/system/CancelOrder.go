@@ -20,6 +20,7 @@ import (
 	"errors"
 	"fmt"
 
+	"github.com/bloXroute-Labs/solana-go"
 	ag_solanago "github.com/bloXroute-Labs/solana-go"
 	"github.com/bloXroute-Labs/solana-go/programs/serum"
 	ag_format "github.com/bloXroute-Labs/solana-go/text/format"
@@ -124,6 +125,11 @@ func (c *CancelOrder) Data() ([]byte, error) {
 		return nil, fmt.Errorf("unable to encode CancelOrder (%v)", err)
 	}
 	return buf.Bytes(), nil
+}
+
+func (c *CancelOrder) ProgramID() solana.PublicKey {
+	// TODO: should there be a separate ProgramID for CancelOrder
+	return solana.SystemProgramID
 }
 
 func (c CancelOrder) Build() *Instruction {
