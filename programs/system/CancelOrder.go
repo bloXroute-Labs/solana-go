@@ -113,6 +113,10 @@ func (c *CancelOrder) EventQueueAccount() *ag_solanago.AccountMeta {
 	return c.AccountMetaSlice[5]
 }
 
+func (c *CancelOrder) Accounts() []*ag_solanago.AccountMeta {
+	return c.AccountMetaSlice
+}
+
 func (c CancelOrder) Build() *Instruction {
 	return &Instruction{BaseVariant: ag_binary.BaseVariant{
 		Impl:   c,
