@@ -15,6 +15,7 @@
 package system
 
 import (
+	"bytes"
 	"encoding/binary"
 	"errors"
 	"fmt"
@@ -115,6 +116,14 @@ func (c *CancelOrder) EventQueueAccount() *ag_solanago.AccountMeta {
 
 func (c *CancelOrder) Accounts() []*ag_solanago.AccountMeta {
 	return c.AccountMetaSlice
+}
+
+func (c *CancelOrder) Data() ([]byte, error) {
+	buf := new(bytes.Buffer)
+	if err := bin.NewBinEncoder(buf).Encode(c); err != nil {
+		return nil, fmt.Errorf("unable to encode CancelOrder (%v)", err)
+	}
+	return buf.Bytes(), nil
 }
 
 func (c CancelOrder) Build() *Instruction {
