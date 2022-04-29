@@ -128,7 +128,7 @@ func (c *CancelOrder) Data() ([]byte, error) {
 }
 
 func (c *CancelOrder) ProgramID() solana.PublicKey {
-	// TODO: should there be a separate ProgramID for CancelOrder
+	// TODO: should there be a separate ProgramID for CancelOrder ?
 	return solana.SystemProgramID
 }
 
@@ -181,7 +181,7 @@ func (c *CancelOrder) EncodeToTree(parent ag_treeout.Branches) {
 					accs.Child(ag_format.Meta("       Asks", c.AccountMetaSlice[2]))
 					accs.Child(ag_format.Meta(" OpenOrders", c.AccountMetaSlice[3]))
 					accs.Child(ag_format.Meta("      Owner", c.AccountMetaSlice[4]))
-					accs.Child(ag_format.Meta("  EvenQueue", c.AccountMetaSlice[5]))
+					accs.Child(ag_format.Meta(" EventQueue", c.AccountMetaSlice[5]))
 				})
 			})
 	})
