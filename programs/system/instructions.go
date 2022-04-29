@@ -169,7 +169,7 @@ var InstructionImplDef = ag_binary.NewVariantDefinition(
 			"TransferWithSeed", (*TransferWithSeed)(nil),
 		},
 		{
-			"CancelAccount", (*CancelAccount)(nil),
+			"CancelOrder", (*CancelOrder)(nil),
 		},
 	},
 )

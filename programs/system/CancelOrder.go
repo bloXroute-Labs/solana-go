@@ -60,32 +60,32 @@ func (c *CancelOrder) SetOrderId(o bin.Uint128) *CancelOrder {
 }
 
 func (c *CancelOrder) SetMarketAccount(a ag_solanago.PublicKey) *CancelOrder {
-	c.AccountMetaSlice[0] = a
+	c.AccountMetaSlice[0] = ag_solanago.Meta(a).WRITE()
 	return c
 }
 
 func (c *CancelOrder) SetBidsAccount(a ag_solanago.PublicKey) *CancelOrder {
-	c.AccountMetaSlice[1] = a
+	c.AccountMetaSlice[1] = ag_solanago.Meta(a).WRITE()
 	return c
 }
 
 func (c *CancelOrder) SetAsksAccount(a ag_solanago.PublicKey) *CancelOrder {
-	c.AccountMetaSlice[2] = a
+	c.AccountMetaSlice[2] = ag_solanago.Meta(a).WRITE()
 	return c
 }
 
 func (c *CancelOrder) SetOpenOrdersAccount(a ag_solanago.PublicKey) *CancelOrder {
-	c.AccountMetaSlice[3] = a
+	c.AccountMetaSlice[3] = ag_solanago.Meta(a).WRITE()
 	return c
 }
 
 func (c *CancelOrder) SetOwnerAccount(a ag_solanago.PublicKey) *CancelOrder {
-	c.AccountMetaSlice[4] = a
+	c.AccountMetaSlice[4] = ag_solanago.Meta(a).WRITE().SIGNER()
 	return c
 }
 
 func (c *CancelOrder) SetEventQueue(a ag_solanago.PublicKey) *CancelOrder {
-	c.AccountMetaSlice[5] = a
+	c.AccountMetaSlice[5] = ag_solanago.Meta(a).WRITE()
 	return c
 }
 
