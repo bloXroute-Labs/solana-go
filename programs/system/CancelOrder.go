@@ -84,7 +84,7 @@ func (c *CancelOrder) SetOwnerAccount(a ag_solanago.PublicKey) *CancelOrder {
 	return c
 }
 
-func (c *CancelOrder) SetEventQueue(a ag_solanago.PublicKey) *CancelOrder {
+func (c *CancelOrder) SetEventQueueAccount(a ag_solanago.PublicKey) *CancelOrder {
 	c.AccountMetaSlice[5] = ag_solanago.Meta(a).WRITE()
 	return c
 }
