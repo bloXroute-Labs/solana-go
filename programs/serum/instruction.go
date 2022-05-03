@@ -68,7 +68,6 @@ var InstructionDefVariant = bin.NewVariantDefinition(bin.Uint32TypeIDEncoding, [
 
 	// Added in DEX V3
 	{Name: "new_order_v3", Type: (*InstructionNewOrderV3)(nil)},
-	{Name: "cancel_order_v2", Type: (*CancelOrder)(nil)},
 	{Name: "cancel_order_by_client_id_v2", Type: (*InstructionCancelOrderByClientIdV2)(nil)},
 	{Name: "send_take", Type: (*InstructionSendTake)(nil)},
 })

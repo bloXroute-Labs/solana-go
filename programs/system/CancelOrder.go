@@ -1,3 +1,4 @@
+// Copyright 2022 bloXroute-Labs
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -11,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package serum
+package system
 
 import (
 	"bytes"
@@ -21,6 +22,7 @@ import (
 
 	"github.com/bloXroute-Labs/solana-go"
 	ag_solanago "github.com/bloXroute-Labs/solana-go"
+	"github.com/bloXroute-Labs/solana-go/programs/serum"
 	ag_format "github.com/bloXroute-Labs/solana-go/text/format"
 	ag_binary "github.com/gagliardetto/binary"
 	bin "github.com/gagliardetto/binary"
@@ -29,7 +31,7 @@ import (
 
 // CancelOrder (V2)
 type CancelOrder struct {
-	Side    *Side
+	Side    *serum.Side
 	OrderId *bin.Uint128
 
 	// 0. `[writable]` market
@@ -49,7 +51,7 @@ func NewCancelOrderInstructionBuilder() *CancelOrder {
 	return nd
 }
 
-func (c *CancelOrder) SetSide(s Side) *CancelOrder {
+func (c *CancelOrder) SetSide(s serum.Side) *CancelOrder {
 	c.Side = &s
 	return c
 }
@@ -204,7 +206,7 @@ func (c *CancelOrder) UnmarshalWithDecoder(decoder *ag_binary.Decoder) error {
 // NewCancelOrderInstruction declares a new CancelOrder instruction with the provided parameters and accounts.
 func NewCancelOrderInstruction(
 	// Parameters:
-	side Side,
+	side serum.Side,
 	orderId bin.Uint128,
 	// Accounts:
 	marketAccount ag_solanago.PublicKey,
