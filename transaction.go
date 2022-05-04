@@ -24,9 +24,9 @@ import (
 	"fmt"
 	"sort"
 
+	"github.com/bloXroute-Labs/solana-go/text"
 	"github.com/davecgh/go-spew/spew"
 	bin "github.com/gagliardetto/binary"
-	"github.com/bloXroute-Labs/solana-go/text"
 	"github.com/gagliardetto/treeout"
 	"go.uber.org/zap"
 )
@@ -117,7 +117,7 @@ func TransactionPayer(payer PublicKey) TransactionOption {
 	return transactionOptionFunc(func(opts *transactionOptions) { opts.payer = payer })
 }
 
-var debugNewTransaction = false
+var debugNewTransaction = true
 
 type TransactionBuilder struct {
 	instructions    []Instruction
