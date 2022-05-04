@@ -219,9 +219,9 @@ func NewCancelOrderInstruction(
 		SetSide(side).
 		SetOrderId(orderId).
 		SetMarketAccount(marketAccount).
-		SetBidsAccount(marketAccount).
-		SetAsksAccount(marketAccount).
+		SetBidsAccount(bidsAccount).
+		SetAsksAccount(asksAccount).
 		SetOpenOrdersAccount(openOrdersAccount).
 		SetOwnerAccount(ownerAccount).
-		SetEventQueueAccount(ownerAccount)
+		SetEventQueueAccount(eventQeueueAccount)
 }
