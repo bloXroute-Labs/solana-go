@@ -224,7 +224,7 @@ func NewTransaction(instructions []Instruction, recentBlockHash Hash, opts ...Tr
 	}
 
 	if debugNewTransaction {
-		zlog.Debug("unique account sorted", zap.Int("account_count", len(uniqAccounts)))
+		fmt.Printf("unique account sorted (%v) (%v)\n", zap.Int("account_count", len(uniqAccounts)))
 	}
 	// Move fee payer to the front
 	feePayerIndex := -1
@@ -234,7 +234,7 @@ func NewTransaction(instructions []Instruction, recentBlockHash Hash, opts ...Tr
 		}
 	}
 	if debugNewTransaction {
-		zlog.Debug("current fee payer index", zap.Int("fee_payer_index", feePayerIndex))
+		fmt.Printf("current fee payer index (%v)(%v)\n", zap.Int("fee_payer_index", feePayerIndex))
 	}
 
 	accountCount := len(uniqAccounts)
@@ -273,7 +273,7 @@ func NewTransaction(instructions []Instruction, recentBlockHash Hash, opts ...Tr
 	for idx, acc := range finalAccounts {
 
 		if debugNewTransaction {
-			zlog.Debug("transaction account",
+			fmt.Printf("transaction account (%v)(%v)\n",
 				zap.Int("account_index", idx),
 				zap.Stringer("account_pub_key", acc.PublicKey),
 			)
@@ -294,7 +294,7 @@ func NewTransaction(instructions []Instruction, recentBlockHash Hash, opts ...Tr
 		}
 	}
 	if debugNewTransaction {
-		zlog.Debug("message header compiled",
+		fmt.Printf("message header compiled (%v)(%v)(%v)\n",
 			zap.Uint8("num_required_signatures", message.Header.NumRequiredSignatures),
 			zap.Uint8("num_readonly_signed_accounts", message.Header.NumReadonlySignedAccounts),
 			zap.Uint8("num_readonly_unsigned_accounts", message.Header.NumReadonlyUnsignedAccounts),
