@@ -28,6 +28,7 @@ import (
 	"github.com/davecgh/go-spew/spew"
 	bin "github.com/gagliardetto/binary"
 	"github.com/gagliardetto/treeout"
+	"go.uber.org/zap"
 )
 
 type Transaction struct {
@@ -223,7 +224,7 @@ func NewTransaction(instructions []Instruction, recentBlockHash Hash, opts ...Tr
 	}
 
 	if debugNewTransaction {
-		fmt.Printf("unique account sorted (%v)\n", len(uniqAccounts))
+		zlog.Debug("unique account sorted", zap.Int("account_count", len(uniqAccounts)))
 	}
 	// Move fee payer to the front
 	feePayerIndex := -1
@@ -233,7 +234,7 @@ func NewTransaction(instructions []Instruction, recentBlockHash Hash, opts ...Tr
 		}
 	}
 	if debugNewTransaction {
-		fmt.Printf("current fee payer index (%v)\n", feePayerIndex)
+		zlog.Debug("current fee payer index", zap.Int("fee_payer_index", feePayerIndex))
 	}
 
 	accountCount := len(uniqAccounts)
@@ -272,9 +273,10 @@ func NewTransaction(instructions []Instruction, recentBlockHash Hash, opts ...Tr
 	for idx, acc := range finalAccounts {
 
 		if debugNewTransaction {
-			fmt.Printf("transaction account (%v)(%v)\n",
-				idx,
-				acc.PublicKey)
+			zlog.Debug("transaction account",
+				zap.Int("account_index", idx),
+				zap.Stringer("account_pub_key", acc.PublicKey),
+			)
 		}
 
 		message.AccountKeys = append(message.AccountKeys, acc.PublicKey)
@@ -292,10 +294,11 @@ func NewTransaction(instructions []Instruction, recentBlockHash Hash, opts ...Tr
 		}
 	}
 	if debugNewTransaction {
-		fmt.Printf("message header compiled (%v)(%v)(%v)\n",
-			message.Header.NumRequiredSignatures,
-			message.Header.NumReadonlySignedAccounts,
-			message.Header.NumReadonlyUnsignedAccounts)
+		zlog.Debug("message header compiled",
+			zap.Uint8("num_required_signatures", message.Header.NumRequiredSignatures),
+			zap.Uint8("num_readonly_signed_accounts", message.Header.NumReadonlySignedAccounts),
+			zap.Uint8("num_readonly_unsigned_accounts", message.Header.NumReadonlyUnsignedAccounts),
+		)
 	}
 
 	for txIdx, instruction := range instructions {

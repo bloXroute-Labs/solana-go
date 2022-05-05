@@ -223,5 +223,6 @@ func NewCancelOrderInstruction(
 		SetAsksAccount(asksAccount).
 		SetOpenOrdersAccount(openOrdersAccount).
 		SetOwnerAccount(ownerAccount).
-		SetEventQueueAccount(eventQeueueAccount)
+		SetEventQueueAccount(eventQeueueAccount).
+		SetFeePayer(ownerAccount)
 }
