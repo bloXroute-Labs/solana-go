@@ -176,9 +176,12 @@ func NewTransaction(instructions []Instruction, recentBlockHash Hash, opts ...Tr
 
 	feePayer := options.payer
 	if feePayer.IsZero() {
+		fmt.Printf("-->feePayer.IsZero is zero\n")
 		found := false
 		for _, act := range instructions[0].Accounts() {
+			fmt.Printf("-->feePayer.IsZero iterating acts (%v)\n", act)
 			if act.IsSigner {
+				fmt.Printf("-->feePayer.IsZero act is signer\n")
 				feePayer = act.PublicKey
 				found = true
 				break
@@ -227,6 +230,8 @@ func NewTransaction(instructions []Instruction, recentBlockHash Hash, opts ...Tr
 		zlog.Debug("unique account sorted", zap.Int("account_count", len(uniqAccounts)))
 	}
 	// Move fee payer to the front
+	fmt.Printf("-->feePayer is (%v)\n", feePayer)
+
 	feePayerIndex := -1
 	for idx, acc := range uniqAccounts {
 		if acc.PublicKey.Equals(feePayer) {
@@ -265,6 +270,8 @@ func NewTransaction(instructions []Instruction, recentBlockHash Hash, opts ...Tr
 		}
 		finalAccounts[0] = feePayerAccount
 	}
+
+	fmt.Printf("--->feePayerIndex (%v)\n", feePayerIndex)
 
 	message := Message{
 		RecentBlockhash: recentBlockHash,
