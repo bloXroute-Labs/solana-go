@@ -128,8 +128,7 @@ func (c *CancelOrder) Data() ([]byte, error) {
 }
 
 func (c *CancelOrder) ProgramID() solana.PublicKey {
-	// TODO: should there be a separate ProgramID for CancelOrder ?
-	return solana.SystemProgramID
+	return serum.DEXProgramIDV2
 }
 
 func (c CancelOrder) Build() *Instruction {
