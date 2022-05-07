@@ -128,7 +128,7 @@ func (c *CancelOrder) Data() ([]byte, error) {
 }
 
 func (c *CancelOrder) ProgramID() solana.PublicKey {
-	return serum.DEXProgramIDV2
+	return serum.DEXProgramV3
 }
 
 func (c CancelOrder) Build() *Instruction {
