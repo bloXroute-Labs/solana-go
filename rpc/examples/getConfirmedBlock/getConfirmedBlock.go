@@ -18,9 +18,9 @@ import (
 	"context"
 
 	"github.com/AlekSi/pointer"
+	"github.com/bloXroute-Labs/solana-go"
+	"github.com/bloXroute-Labs/solana-go/rpc"
 	"github.com/davecgh/go-spew/spew"
-	"github.com/gagliardetto/solana-go"
-	"github.com/gagliardetto/solana-go/rpc"
 )
 
 func main() {

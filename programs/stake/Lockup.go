@@ -17,8 +17,8 @@ package stake
 import (
 	"errors"
 
+	ag_solanago "github.com/bloXroute-Labs/solana-go"
 	bin "github.com/gagliardetto/binary"
-	ag_solanago "github.com/gagliardetto/solana-go"
 )
 
 type Lockup struct {

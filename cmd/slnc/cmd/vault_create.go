@@ -21,10 +21,10 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/gagliardetto/solana-go"
+	"github.com/bloXroute-Labs/solana-go"
 
-	"github.com/gagliardetto/solana-go/cli"
-	"github.com/gagliardetto/solana-go/vault"
+	"github.com/bloXroute-Labs/solana-go/cli"
+	"github.com/bloXroute-Labs/solana-go/vault"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )

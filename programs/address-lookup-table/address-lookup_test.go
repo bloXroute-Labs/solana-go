@@ -6,8 +6,8 @@ import (
 	"math"
 	"testing"
 
+	"github.com/bloXroute-Labs/solana-go"
 	bin "github.com/gagliardetto/binary"
-	"github.com/gagliardetto/solana-go"
 	"github.com/stretchr/testify/require"
 )
 
